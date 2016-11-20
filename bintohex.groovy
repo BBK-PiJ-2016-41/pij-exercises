@@ -1,0 +1,112 @@
+String binToHex (String bin) {
+	String binary = bin
+	int length = binary.length()
+	int buffer = 4 - (length % 4)
+	for (int i = 0; i < buffer; i++)
+	{
+		binary = "0" + binary
+	}
+
+	String hex = ""
+	length = binary.length()
+	for (int i = 0; i < length; i += 4)
+	{
+		int counter = 0
+		counter += (Integer.parseInt(binary[i]))*8
+		counter += (Integer.parseInt(binary[i+1]))*4
+		counter += (Integer.parseInt(binary[i+2]))*2
+		counter += (Integer.parseInt(binary[i+3]))
+		
+		if (counter <= 9 && counter > 0) {
+			hex += counter.toString()
+		}
+		else if (counter == 10) {
+			hex += "A"
+		}
+		else if (counter == 11) {
+			hex += "B"
+		}
+		else if (counter == 12) {
+			hex += "C"
+		}
+		else if (counter == 13) {
+			hex += "D"
+		}
+		else if (counter == 14) {
+			hex += "E"
+		}
+		else if (counter == 15) {
+			hex += "F"
+		}
+	}
+	return hex
+}
+
+String hexToBin (String hex) {
+	int length = hex.length()
+	String binary = ""
+	for (int i = 0; i < length; i++)
+	{
+		if (hex[i] == "A") {
+			binary += "1010"
+		}
+		else if (hex[i] == "B") {
+			binary += "1011"
+		}
+		else if (hex[i] == "C") {
+			binary += "1100"
+		}
+		else if (hex[i] == "D") {
+			binary += "1101"
+		}
+		else if (hex[i] == "E") {
+			binary += "1110"
+		}
+		else if (hex[i] == "F") {
+			binary += "1111"
+		}
+		else {
+			binary += (decimal2binary(Integer.parseInt(hex[i])))
+		}
+	}
+	return binary
+}
+
+String decimal2binary (int decimal) {
+	int originalDecimal = decimal
+	String newBinary = ""
+	while (originalDecimal > 0)
+	{
+		int nextNumber = 0
+		if (originalDecimal == 1) {
+			nextNumber = 1
+		}
+		else {
+			nextNumber = originalDecimal % 2
+		}
+
+		newBinary = nextNumber.toString() + newBinary
+
+		if (nextNumber == 0) {
+			originalDecimal = originalDecimal/2
+		}
+		else {
+			originalDecimal = (originalDecimal - 1)/2
+		}
+	}
+	return newBinary
+}
+
+println "Please enter a number you wish to convert."
+String number = System.console().readLine()
+String output = ""
+if (number.substring(0,2) == "0x")
+{
+	output = hexToBin(number.substring(2))
+}
+else
+{
+	output = "0x" + binToHex(number)
+}
+
+println "Your converted number is " + output
