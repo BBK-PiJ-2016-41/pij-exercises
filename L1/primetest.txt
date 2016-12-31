@@ -1,0 +1,19 @@
+println "Please enter a number"
+String number = System.console.readLine()
+int num = Integer.parseInt(number)
+boolean prime = false
+int testUntil = 100
+int i = 2
+while (!prime && i < testUntil)
+{
+	if (num % i === 0)
+	{
+		println "I'm sorry, your number is not prime."
+		break;
+	}
+	i++
+}
+if (prime)
+{
+	println "Your number is prime!"
+}

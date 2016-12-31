@@ -1,0 +1,77 @@
+println "Please enter a mathematical operation with two operands."
+String operation = System.console().readLine()
+String[] operationArray
+String operationSign
+Double operandOne = null
+Double operandTwo = null
+if (operation.contains(" "))
+{
+	operationArray = operation.split(" ")
+}
+else if (operation.contains("+"))
+{
+	operationArray = operation.split("+")
+	operationSign = "+"
+}
+else if (operation.contains("-"))
+{
+	operationArray = operation.split("-")
+	operationSign = "-"
+}
+else if (operation.contains("/"))
+{
+	operationArray = operation.split("/")
+	operationSign = "/"
+}
+else if (operation.contains("*"))
+{
+	operationArray = operation.split("*")
+	operationSign = "*"
+}
+else
+{
+	println "Operation not recognised."
+}
+int operationLength = operationArray.length
+for (int i = 0; i < operationLength; i++)
+{
+	try
+	{
+		Double numberCarrier = Double.parseDouble(operationArray[i])
+		if (operandOne == null)
+		{
+			operandOne = numberCarrier
+		}
+		else
+		{
+			operandTwo = numberCarrier
+		}
+	}
+	catch (NumberFormatException nfe)
+	{
+		String charCarrier = operationArray[i]
+		if (charCarrier != " ")
+		{
+			operationSign = charCarrier
+		}
+	}	
+}
+
+switch (operationSign)
+{
+case "+":
+	println operandOne + " + " + operandTwo " = " + (operandOne + operandTwo)
+	break;
+case "-":
+	println operandOne + " - " + operandTwo " = " + (operandOne - operandTwo)
+	break;
+case "*":
+	println operandOne + " * " + operandTwo " = " + (operandOne * operandTwo)
+	break;
+case "/":
+	println operandOne + " / " + operandTwo " = " + (operandOne / operandTwo)
+	break;
+default:
+	println "Operation not recognised."
+	break;
+}

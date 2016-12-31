@@ -1,0 +1,31 @@
+int power(int b, int e) {
+	int power = b
+	for (var i = 1; i < e; i++)
+	{
+		power = power * b
+	}
+	return power
+}
+
+int power2(int e) {
+	int twoToPower = power(2, e)
+	return twoToPower
+}
+
+binary2decimal(String binary) {
+	int decimal = 0
+	int length = binary.length
+	for (var i = 0; i < length; i++)
+	{
+		int binaryInt = Integer.parseInt(binary[i])
+		int increment = binaryInt * (power2(length - 1 - i))
+		decimal = decimal + increment
+	}
+	return decimal
+}
+
+int test = power(3,6)
+println test
+
+int binaryTest = binary2decimal("100011")
+println binaryTest

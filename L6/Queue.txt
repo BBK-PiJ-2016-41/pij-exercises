@@ -1,0 +1,37 @@
+public class Queue {
+	private MyInt firstInt = null;
+	public static int noInts = 0;
+	
+	// adds new int, after checking if list is empty
+	public void insert(IntToLink myInt) {
+		if (firstInt == null) {
+				firstInt = myInt;
+				noInts++;
+				return;
+			}
+		myInt.nextInt = firstInt;
+		firstInt.nextInt = myInt;
+		noInts++;
+		return
+	}
+	
+	public int getNoInts() {
+		return this.noInts;
+	}
+	
+	public void retrieve() {
+		if (firstInt == null) {
+			//list is empty nothing to remove
+			return;
+		}
+		
+		IntToLink current = firstInt;
+			while ((current.getNextInt()).getNextInt != null) {
+				current = current.getNextInt();			
+			}
+			current.setNextInt() = null;
+		
+		return;
+		
+	}
+}
